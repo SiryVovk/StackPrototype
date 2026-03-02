@@ -10,6 +10,7 @@ public class BlockMovement : MonoBehaviour
     private bool isMoving = false;
 
     private float timeOffset;
+    private float speedIncresement = 0;
 
     private void Start()
     {
@@ -28,7 +29,7 @@ public class BlockMovement : MonoBehaviour
 
     private void Move()
     {
-        float t = (Time.time - timeOffset) * movementSpeed;
+        float t = (Time.time - timeOffset) * (movementSpeed + speedIncresement);
         float value = Mathf.PingPong(t, boundary * 2) - boundary;
 
         if (movingOnX)
@@ -59,5 +60,10 @@ public class BlockMovement : MonoBehaviour
     public void SetMovingOnX(bool onX = true)
     {
         movingOnX = onX; 
+    }
+
+    public void SetSpeedIncresment(float speed)
+    {
+        speedIncresement = speed; 
     }
 }

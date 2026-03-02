@@ -4,8 +4,10 @@ public class BlockSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject blockPrefab;
     [SerializeField] private float spawnBoundary = 7f;
+    [SerializeField] private float blocksSpeedIncresment = 0.05f;
 
     private int blockCounter = 0;
+
 
     public BlockMovement CreateNewBlock(BlockMovement prevBlock)
     {
@@ -41,6 +43,7 @@ public class BlockSpawner : MonoBehaviour
         }
 
         BlockMovement newBlock = Instantiate(blockPrefab, spawnPosition, Quaternion.identity).GetComponent<BlockMovement>();
+        newBlock.SetSpeedIncresment(blocksSpeedIncresment * blockCounter);
         blockCounter++;
 
         if(prevBlock != null && prevBlock.GetMovingOnX())
